@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6DB244CE1FBDF95400813FF8 /* PizzaAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB244CD1FBDF95400813FF8 /* PizzaAnnotationView.swift */; };
 		6DF3D7C41FB9F57A00FD6839 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3D7C31FB9F57A00FD6839 /* AppDelegate.swift */; };
 		6DF3D7C61FB9F57A00FD6839 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3D7C51FB9F57A00FD6839 /* MapViewController.swift */; };
 		6DF3D7C81FB9F57A00FD6839 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3D7C71FB9F57A00FD6839 /* LocationViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6DB244CD1FBDF95400813FF8 /* PizzaAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzaAnnotationView.swift; sourceTree = "<group>"; };
 		6DF3D7C01FB9F57A00FD6839 /* LocationDemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationDemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF3D7C31FB9F57A00FD6839 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DF3D7C51FB9F57A00FD6839 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				6DF3D7D11FB9F57A00FD6839 /* Info.plist */,
 				6DF3D7DA1FBA1E4100FD6839 /* HackeruRun.gpx */,
 				6DF3D7DB1FBA272700FD6839 /* PizzaAnnotation.swift */,
+				6DB244CD1FBDF95400813FF8 /* PizzaAnnotationView.swift */,
 			);
 			path = LocationDemos;
 			sourceTree = "<group>";
@@ -118,6 +121,9 @@
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
@@ -165,6 +171,7 @@
 				6DF3D7DC1FBA272700FD6839 /* PizzaAnnotation.swift in Sources */,
 				6DF3D7C41FB9F57A00FD6839 /* AppDelegate.swift in Sources */,
 				6DF3D7C61FB9F57A00FD6839 /* MapViewController.swift in Sources */,
+				6DB244CE1FBDF95400813FF8 /* PizzaAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

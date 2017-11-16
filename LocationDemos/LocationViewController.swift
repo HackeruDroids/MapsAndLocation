@@ -8,8 +8,30 @@
 
 import UIKit
 import CoreLocation
-class LocationViewController: UIViewController {
+import Contacts
 
+class LocationViewController: UIViewController {
+    let geoCoder = CLGeocoder()
+    
+    @IBAction func search(_ sender: UIButton) {
+        guard let text = addressText.text else {return}
+        
+        geoCoder.geocodeAddressString(text) { (places, err) in
+            if let err = err {
+                print(err); return
+            }
+            guard let place = places?.first,
+            let lat = place.location?.coordinate.latitude,
+            let lng = place.location?.coordinate.longitude
+            else {return}
+            
+            DispatchQueue.main.async {
+                self.locationLabel.text = "(\(lat), \(lng))"
+            }
+        }
+    }
+    
+    @IBOutlet weak var addressText: UITextField!
     @IBOutlet weak var locationLabel: UILabel!
     var locationManager = CLLocationManager()
 
@@ -20,7 +42,23 @@ class LocationViewController: UIViewController {
  
         if isLocationEnabled() && hasPermission(){
           requestLocationUpdates()
+            
+            //lat=32.0844224 lon=34.8007186
+            //CLLocationDegrees -> Double.
+            //CLLocationDistance -> Double
+            let coord = CLLocationCoordinate2D(latitude: 32.0844224, longitude: 34.8007186)
+            let circular = CLCircularRegion(center: coord, radius: 10, identifier: "Hackeru")
+            circular.notifyOnExit = true
+            circular.notifyOnEntry = true
+            
+            
+            
+            locationManager.allowsBackgroundLocationUpdates = true
+            
+            locationManager.startMonitoring(for: circular)
         }
+        
+        
     }
     
 
@@ -54,20 +92,18 @@ class LocationViewController: UIViewController {
     }
 }
 
-
 extension LocationViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(locations[0])
         
-        locationLabel.text = "(\(locations[0].coordinate.latitude), \(locations[0].coordinate.longitude))"
+//        locationLabel.text = "(\(locations[0].coordinate.latitude), \(locations[0].coordinate.longitude))"
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         if isLocationEnabled() && hasPermission(){
             requestLocationUpdates()
         }
-        
-        
+
         print("Did Change Auth Status", status)
         
         switch status {
@@ -84,5 +120,9 @@ extension LocationViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print(region.identifier)
     }
 }

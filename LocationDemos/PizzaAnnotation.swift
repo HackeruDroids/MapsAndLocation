@@ -13,14 +13,11 @@ class PizzaAnnotation: NSObject, MKAnnotation{
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    //KVO:
     
     init(coordinate: CLLocationCoordinate2D, title:String?, subtitle: String?){
         self.subtitle = subtitle
         self.title = title
         self.coordinate = coordinate
     }
-    
-    
-    
-
 }
